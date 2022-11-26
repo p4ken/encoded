@@ -8,3 +8,4 @@ proc-macro = true
 
 [dependencies]
 encoding_rs = "0.8.31"
+litrs = "0.2.3"
