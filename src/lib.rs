@@ -1,7 +1,6 @@
-use std::vec::Vec;
+use std::{str::FromStr, vec::Vec};
 
 use proc_macro::{Literal, Span, TokenStream, TokenTree};
-use quote::quote_spanned;
 
 #[proc_macro]
 pub fn shift_jis(tokens: TokenStream) -> TokenStream {
@@ -9,12 +8,19 @@ pub fn shift_jis(tokens: TokenStream) -> TokenStream {
 
     let tokens = tokens.into_iter().collect::<Vec<_>>();
     let literal = match &tokens[..] {
-        [] => return error(Span::call_site(), "An argument needed."),
         [TokenTree::Literal(x)] => x,
-        [x] => return error(x.span(), "Expected literal."),
-        [_, x, ..] => return error(x.span(), "Too many arguments."),
+        [x] => return error(x.span(), "argument must be a string literal"),
+        _ => return error(Span::call_site(), "shift_jis! takes 1 argument2"),
     };
     dbg!(&literal);
+
+    let literal = literal.to_string();
+    dbg!(&literal);
+    // 最初と最後が " かどうか？
+    // let utf8 = match literal.chars() {
+    //     [""] => panic!("yeaaah!"),
+    //     _ => literal,
+    // };
 
     // let utf8 = input.to_string();
     // let (sjis, _, fail) =encoding_rs::SHIFT_JIS.encode(&utf8);
@@ -29,5 +35,12 @@ pub fn shift_jis(tokens: TokenStream) -> TokenStream {
 }
 
 fn error(span: Span, message: &str) -> TokenStream {
-    quote_spanned!(span.into() => compile_error!(#message)).into()
+    let tokens = TokenStream::from_str(&format!("compile_error!(\"{}\")", message)).unwrap();
+    tokens
+        .into_iter()
+        .map(|mut t| {
+            t.set_span(span);
+            t
+        })
+        .collect()
 }
