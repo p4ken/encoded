@@ -7,3 +7,5 @@ edition = "2021"
 proc-macro = true
 
 [dependencies]
+encoding_rs = "0.8.31"
+syn = "1.0.103"
