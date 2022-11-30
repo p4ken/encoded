@@ -1,6 +1,6 @@
 # encoded
 
-Function-style macro that encodes characters at compile time in Rust.
+Macro in rust that encodes characters as compile time.
 
 ## install
 

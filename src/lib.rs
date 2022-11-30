@@ -1,3 +1,7 @@
+//! Macro in rust that encodes characters as compile time.
+//! 
+//! 
+
 use std::{str::FromStr, vec::Vec};
 
 use litrs::StringLit;
@@ -25,6 +29,7 @@ pub fn shift_jis(tokens: TokenStream) -> TokenStream {
         );
     }
 
+    dbg!([TokenTree::Literal(Literal::byte_string(&sjis[..]))]);
     [TokenTree::Literal(Literal::byte_string(&sjis[..]))]
         .into_iter()
         .collect::<TokenStream>()
