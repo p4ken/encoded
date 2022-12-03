@@ -2,13 +2,6 @@ use encoded::shift_jis;
 
 #[test]
 fn it_works() {
-    let sjis = &shift_jis!("日本語")[..];
-    assert_eq!(sjis, b"\x93\xfa\x96{\x8c\xea");
+    let sjis: &[u8] = shift_jis!("漢字");
+    assert_eq!(sjis, b"\x8a\xbf\x8e\x9a");
 }
-
-// sliceとarrayどちらが良いか？
-// #[test]
-// fn cow() {
-//     let (sjis, _, _) = encoding_rs::SHIFT_JIS.encode("日本語");
-//     sjis.concat(sjis)
-// }
