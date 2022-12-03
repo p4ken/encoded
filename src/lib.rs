@@ -3,8 +3,7 @@
 //! Fucntion-style macros convert from a string literal (UTF-8)
 //! into byte string literal (any character encoding).
 //!
-//! It reduces processing costs and binary size
-//! compared to runtime conversion.
+//! It helps reducing runtime processing costs and binary size.
 //!
 //! # Examples
 //!
