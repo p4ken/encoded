@@ -9,10 +9,7 @@ pub fn convert(tokens: TokenStream, encoding: &'static Encoding) -> TokenStream 
     let literal = match &tokens[..] {
         [TokenTree::Literal(x)] => x,
         [x] => return error(x.span(), "argument must be a literal"),
-        [..] => {
-            let message = &format!("{}! takes 1 argument", encoding.name().to_lowercase());
-            return error(Span::call_site(), message);
-        }
+        [..] => return error(Span::call_site(), "macro takes 1 argument"),
     };
 
     let utf8 = if let Ok(x) = StringLit::try_from(literal) {
@@ -25,7 +22,7 @@ pub fn convert(tokens: TokenStream, encoding: &'static Encoding) -> TokenStream 
 
     let (sjis, _, fail) = encoding.encode(&utf8);
     if fail {
-        let message = format!("{} cannot convert to {}", utf8, encoding.name());
+        let message = format!("{} cannot be converted to {}", utf8, encoding.name());
         return error(literal.span(), &message);
     }
 
