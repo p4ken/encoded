@@ -56,3 +56,69 @@ mod inner;
 pub fn shift_jis(tokens: TokenStream) -> TokenStream {
     inner::convert(tokens, encoding_rs::SHIFT_JIS)
 }
+
+
+/// # Examples
+///
+/// ```
+/// let bytes = encoded::big5!("漢字");
+/// assert_eq!(bytes, b"\xba\x7e\xa6\x72");
+/// ```
+///
+/// See also [crate].
+#[proc_macro]
+pub fn big5(tokens: TokenStream) -> TokenStream {
+    inner::convert(tokens, encoding_rs::BIG5)
+}
+
+/// # Examples
+///
+/// ```
+/// let bytes = encoded::gbk!("漢字");
+/// assert_eq!(bytes, b"\x9d\x68\xd7\xd6");
+/// ```
+///
+/// See also [crate].
+#[proc_macro]
+pub fn gbk(tokens: TokenStream) -> TokenStream {
+    inner::convert(tokens, encoding_rs::GBK)
+}
+
+/// # Examples
+///
+/// ```
+/// let bytes = encoded::euc_kr!("한글");
+/// assert_eq!(bytes, b"\xc7\xd1\xb1\xdb");
+/// ```
+///
+/// See also [crate].
+#[proc_macro]
+pub fn euc_kr(tokens: TokenStream) -> TokenStream {
+    inner::convert(tokens, encoding_rs::EUC_KR)
+}
+
+/// # Examples
+///
+/// ```
+/// let bytes = encoded::koi8_r!("Кириллица");
+/// assert_eq!(bytes, b"\xeb\xc9\xd2\xc9\xcc\xcc\xc9\xc3\xc1");
+/// ```
+///
+/// See also [crate].
+#[proc_macro]
+pub fn koi8_r(tokens: TokenStream) -> TokenStream {
+    inner::convert(tokens, encoding_rs::KOI8_R)
+}
+
+/// # Examples
+///
+/// ```
+/// let bytes = encoded::windows_1251!("Кириллица");
+/// assert_eq!(bytes, b"\xca\xe8\xf0\xe8\xeb\xeb\xe8\xf6\xe0");
+/// ```
+///
+/// See also [crate].
+#[proc_macro]
+pub fn windows_1251(tokens: TokenStream) -> TokenStream {
+    inner::convert(tokens, encoding_rs::WINDOWS_1251)
+}
