@@ -1,6 +1,6 @@
 # encoded
 
-Macro in rust that encodes characters at compile time.
+Rust crate to convert character encodings at compile time.
 
 ## install
 
@@ -11,7 +11,6 @@ cargo add --git https://github.com/p4ken/encoded
 ## usage
 
 ```rs
-use encoded::shift_jis;
-
-let kanji_sjis = shift_jis!("漢字");
+let bytes = encoded::shift_jis!("漢字");
+assert_eq!(bytes, b"\x8a\xbf\x8e\x9a");
 ```
