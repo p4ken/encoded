@@ -5,12 +5,14 @@ Rust crate to convert character encodings at compile time.
 ## install
 
 ```sh
-cargo add --git https://github.com/p4ken/encoded
+cargo add encoded
 ```
 
 ## usage
 
 ```rs
-let bytes = encoded::shift_jis!("漢字");
-assert_eq!(bytes, b"\x8a\xbf\x8e\x9a");
+const BYTES: &[u8] = encoded::shift_jis!("漢字");
+assert_eq!(BYTES, b"\x8a\xbf\x8e\x9a");
 ```
+
+For more information, see the [documentation](https://docs.rs/encoded/).

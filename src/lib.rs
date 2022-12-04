@@ -1,6 +1,8 @@
-//! Macros converting character encodings at compile time which reduce runtime processing costs and binary size.
+//! Macros converting character encodings at compile time
+//! which reduce runtime processing costs and binary size.
 //!
-//! Encoding definitions depend on the [encoding_rs](https://docs.rs/encoding_rs/latest/encoding_rs/) crate.
+//! Encoding definitions depend on the [encoding_rs](https://docs.rs/encoding_rs/) crate.
+//! 
 //!
 //! # Examples
 //!
