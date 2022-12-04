@@ -2,6 +2,11 @@
 name = "encoded"
 version = "0.3.0"
 edition = "2021"
+authors = ["p4ken"]
+description = "Macros converting character encodings which reduce runtime costs and binary size."
+license = "MIT"
+keywords = ["encode","Shift_JIS", "windows-1251", "windows-1252", "ISO-8859"]
+categories = ["Encoding", "localization", "text-processing"]
 
 [lib]
 proc-macro = true
