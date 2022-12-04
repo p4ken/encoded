@@ -7,8 +7,8 @@
 //! # Examples
 //!
 //! ```
-//! let bytes = encoded::shift_jis!("漢字");
-//! assert_eq!(bytes, b"\x8a\xbf\x8e\x9a");
+//! const BYTES: &[u8] = encoded::shift_jis!("漢字");
+//! assert_eq!(BYTES, b"\x8a\xbf\x8e\x9a");
 //! ```
 //!
 //! Can be used with [std::io::Write]:
@@ -26,28 +26,27 @@
 //! Argument must be a literal:
 //!
 //! ```compile_fail
-//! let kanji = "漢字";
-//! let bytes = encoded::shift_jis!(kanji);
-//! //                              ^^^^^
+//! const kanji: &str = "漢字";
+//! const BYTES: &[u8] = encoded::shift_jis!(kanji);
+//! //                                       ^^^^^
 //! ```
 //!
 //! Any unmappable characters result a compile error:
 //!
 //! ```compile_fail
-//! let bytes = encoded::shift_jis!("鷗外");
-//! //                              ^^^^^^
+//! const BYTES: &[u8] = encoded::shift_jis!("鷗外");
+//! //                                       ^^^^^^
 //! ```
 
 use proc_macro::TokenStream;
 
 mod inner;
 
-
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::big5!("漢字");
-/// assert_eq!(bytes, b"\xba\x7e\xa6\x72");
+/// const BYTES: &[u8] = encoded::big5!("漢字");
+/// assert_eq!(BYTES, b"\xba\x7e\xa6\x72");
 /// ```
 ///
 /// See also [crate].
@@ -59,8 +58,8 @@ pub fn big5(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::euc_jp!("漢字");
-/// assert_eq!(bytes, b"\xb4\xc1\xbb\xfa");
+/// const BYTES: &[u8] = encoded::euc_jp!("漢字");
+/// assert_eq!(BYTES, b"\xb4\xc1\xbb\xfa");
 /// ```
 ///
 /// See also [crate].
@@ -72,8 +71,8 @@ pub fn euc_jp(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::euc_kr!("한글");
-/// assert_eq!(bytes, b"\xc7\xd1\xb1\xdb");
+/// const BYTES: &[u8] = encoded::euc_kr!("한글");
+/// assert_eq!(BYTES, b"\xc7\xd1\xb1\xdb");
 /// ```
 ///
 /// See also [crate].
@@ -85,8 +84,8 @@ pub fn euc_kr(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::gbk!("漢字");
-/// assert_eq!(bytes, b"\x9d\x68\xd7\xd6");
+/// const BYTES: &[u8] = encoded::gbk!("漢字");
+/// assert_eq!(BYTES, b"\x9d\x68\xd7\xd6");
 /// ```
 ///
 /// See also [crate].
@@ -98,8 +97,8 @@ pub fn gbk(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::gb18030!('💻');
-/// assert_eq!(bytes, b"\x94\x39\xdc\x31");
+/// const BYTES: &[u8] = encoded::gb18030!('💻');
+/// assert_eq!(BYTES, b"\x94\x39\xdc\x31");
 /// ```
 ///
 /// See also [crate].
@@ -111,8 +110,8 @@ pub fn gb18030(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::iso_8859_2!("abecadło");
-/// assert_eq!(bytes, b"abecad\xb3o");
+/// const BYTES: &[u8] = encoded::iso_8859_2!("abecadło");
+/// assert_eq!(BYTES, b"abecad\xb3o");
 /// ```
 ///
 /// See also [crate].
@@ -124,8 +123,8 @@ pub fn iso_8859_2(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::iso_8859_4!("abėcėlė");
-/// assert_eq!(bytes, b"ab\xecc\xecl\xec");
+/// const BYTES: &[u8] = encoded::iso_8859_4!("abėcėlė");
+/// assert_eq!(BYTES, b"ab\xecc\xecl\xec");
 /// ```
 ///
 /// See also [crate].
@@ -137,8 +136,8 @@ pub fn iso_8859_4(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::iso_8859_5!("Кириллица");
-/// assert_eq!(bytes, b"\xba\xd8\xe0\xd8\xdb\xdb\xd8\xe6\xd0");
+/// const BYTES: &[u8] = encoded::iso_8859_5!("Кириллица");
+/// assert_eq!(BYTES, b"\xba\xd8\xe0\xd8\xdb\xdb\xd8\xe6\xd0");
 /// ```
 ///
 /// See also [crate].
@@ -150,8 +149,8 @@ pub fn iso_8859_5(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::iso_8859_6!("الْأَبْجَدِيَّة");
-/// assert_eq!(bytes, b"\xc7\xe4\xf2\xc3\xee\xc8\xf2\xcc\xee\xcf\xf0\xea\xee\xf1\xc9");
+/// const BYTES: &[u8] = encoded::iso_8859_6!("الْأَبْجَدِيَّة");
+/// assert_eq!(BYTES, b"\xc7\xe4\xf2\xc3\xee\xc8\xf2\xcc\xee\xcf\xf0\xea\xee\xf1\xc9");
 /// ```
 ///
 /// See also [crate].
@@ -163,8 +162,8 @@ pub fn iso_8859_6(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::iso_8859_7!("αλφάβητο");
-/// assert_eq!(bytes, b"\xe1\xeb\xf6\xdc\xe2\xe7\xf4\xef");
+/// const BYTES: &[u8] = encoded::iso_8859_7!("αλφάβητο");
+/// assert_eq!(BYTES, b"\xe1\xeb\xf6\xdc\xe2\xe7\xf4\xef");
 /// ```
 ///
 /// See also [crate].
@@ -176,8 +175,8 @@ pub fn iso_8859_7(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::iso_8859_8!("אלפבית");
-/// assert_eq!(bytes, b"\xe0\xec\xf4\xe1\xe9\xfa");
+/// const BYTES: &[u8] = encoded::iso_8859_8!("אלפבית");
+/// assert_eq!(BYTES, b"\xe0\xec\xf4\xe1\xe9\xfa");
 /// ```
 ///
 /// See also [crate].
@@ -189,8 +188,8 @@ pub fn iso_8859_8(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::iso_8859_10!("stafrófið");
-/// assert_eq!(bytes, b"stafr\xf3fi\xf0");
+/// const BYTES: &[u8] = encoded::iso_8859_10!("stafrófið");
+/// assert_eq!(BYTES, b"stafr\xf3fi\xf0");
 /// ```
 ///
 /// See also [crate].
@@ -202,8 +201,8 @@ pub fn iso_8859_10(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::iso_8859_13!("abecadło");
-/// assert_eq!(bytes, b"abecad\xf9o");
+/// const BYTES: &[u8] = encoded::iso_8859_13!("abecadło");
+/// assert_eq!(BYTES, b"abecad\xf9o");
 /// ```
 ///
 /// See also [crate].
@@ -215,8 +214,8 @@ pub fn iso_8859_13(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::iso_8859_15!("œufs");
-/// assert_eq!(bytes, b"\xbdufs");
+/// const BYTES: &[u8] = encoded::iso_8859_15!("œufs");
+/// assert_eq!(BYTES, b"\xbdufs");
 /// ```
 ///
 /// See also [crate].
@@ -228,8 +227,8 @@ pub fn iso_8859_15(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::iso_8859_16!("virguliță");
-/// assert_eq!(bytes, b"virguli\xfe\xe3");
+/// const BYTES: &[u8] = encoded::iso_8859_16!("virguliță");
+/// assert_eq!(BYTES, b"virguli\xfe\xe3");
 /// ```
 ///
 /// See also [crate].
@@ -241,8 +240,8 @@ pub fn iso_8859_16(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::koi8_r!("Кириллица");
-/// assert_eq!(bytes, b"\xeb\xc9\xd2\xc9\xcc\xcc\xc9\xc3\xc1");
+/// const BYTES: &[u8] = encoded::koi8_r!("Кириллица");
+/// assert_eq!(BYTES, b"\xeb\xc9\xd2\xc9\xcc\xcc\xc9\xc3\xc1");
 /// ```
 ///
 /// See also [crate].
@@ -254,8 +253,8 @@ pub fn koi8_r(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::koi8_u!("кирилиця");
-/// assert_eq!(bytes, b"\xcb\xc9\xd2\xc9\xcc\xc9\xc3\xd1");
+/// const BYTES: &[u8] = encoded::koi8_u!("кирилиця");
+/// assert_eq!(BYTES, b"\xcb\xc9\xd2\xc9\xcc\xc9\xc3\xd1");
 /// ```
 ///
 /// See also [crate].
@@ -267,8 +266,8 @@ pub fn koi8_u(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::shift_jis!("漢字");
-/// assert_eq!(bytes, b"\x8a\xbf\x8e\x9a");
+/// const BYTES: &[u8] = encoded::shift_jis!("漢字");
+/// assert_eq!(BYTES, b"\x8a\xbf\x8e\x9a");
 /// ```
 ///
 /// See also [crate].
@@ -280,8 +279,8 @@ pub fn shift_jis(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::windows_874!("อักษร");
-/// assert_eq!(bytes, b"\xcd\xd1\xa1\xc9\xc3");
+/// const BYTES: &[u8] = encoded::windows_874!("อักษร");
+/// assert_eq!(BYTES, b"\xcd\xd1\xa1\xc9\xc3");
 /// ```
 ///
 /// See also [crate].
@@ -293,8 +292,8 @@ pub fn windows_874(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::windows_1251!("Кириллица");
-/// assert_eq!(bytes, b"\xca\xe8\xf0\xe8\xeb\xeb\xe8\xf6\xe0");
+/// const BYTES: &[u8] = encoded::windows_1251!("Кириллица");
+/// assert_eq!(BYTES, b"\xca\xe8\xf0\xe8\xeb\xeb\xe8\xf6\xe0");
 /// ```
 ///
 /// See also [crate].
@@ -306,8 +305,8 @@ pub fn windows_1251(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::windows_1252!("œufs");
-/// assert_eq!(bytes, b"\x9cufs");
+/// const BYTES: &[u8] = encoded::windows_1252!("œufs");
+/// assert_eq!(BYTES, b"\x9cufs");
 /// ```
 ///
 /// See also [crate].
@@ -319,8 +318,8 @@ pub fn windows_1252(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::windows_1253!("μικρός");
-/// assert_eq!(bytes, b"\xec\xe9\xea\xf1\xfc\xf2");
+/// const BYTES: &[u8] = encoded::windows_1253!("μικρός");
+/// assert_eq!(BYTES, b"\xec\xe9\xea\xf1\xfc\xf2");
 /// ```
 ///
 /// See also [crate].
@@ -332,8 +331,8 @@ pub fn windows_1253(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::windows_1254!("sığ");
-/// assert_eq!(bytes, b"s\xfd\xf0");
+/// const BYTES: &[u8] = encoded::windows_1254!("sığ");
+/// assert_eq!(BYTES, b"s\xfd\xf0");
 /// ```
 ///
 /// See also [crate].
@@ -345,8 +344,8 @@ pub fn windows_1254(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::windows_1255!("נִקּוּד‎");
-/// assert_eq!(bytes, b"\xf0\xc4\xf7\xcc\xe5\xcc\xe3\xfd");
+/// const BYTES: &[u8] = encoded::windows_1255!("נִקּוּד‎");
+/// assert_eq!(BYTES, b"\xf0\xc4\xf7\xcc\xe5\xcc\xe3\xfd");
 /// ```
 ///
 /// See also [crate].
@@ -358,8 +357,8 @@ pub fn windows_1255(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::windows_1256!("الْأَبْجَدِيَّة");
-/// assert_eq!(bytes, b"\xc7\xe1\xfa\xc3\xf3\xc8\xfa\xcc\xf3\xcf\xf6\xed\xf3\xf8\xc9");
+/// const BYTES: &[u8] = encoded::windows_1256!("الْأَبْجَدِيَّة");
+/// assert_eq!(BYTES, b"\xc7\xe1\xfa\xc3\xf3\xc8\xfa\xcc\xf3\xcf\xf6\xed\xf3\xf8\xc9");
 /// ```
 ///
 /// See also [crate].
@@ -371,8 +370,8 @@ pub fn windows_1256(tokens: TokenStream) -> TokenStream {
 /// # Examples
 ///
 /// ```
-/// let bytes = encoded::windows_1257!("„“");
-/// assert_eq!(bytes, b"\x84\x93");
+/// const BYTES: &[u8] = encoded::windows_1257!("„“");
+/// assert_eq!(BYTES, b"\x84\x93");
 /// ```
 ///
 /// See also [crate].
