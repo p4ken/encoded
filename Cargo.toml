@@ -5,7 +5,8 @@ edition = "2021"
 authors = ["p4ken"]
 repository = "https://github.com/p4ken/encoded"
 license = "MIT OR Apache-2.0"
-description = "Macros converting character encodings which reduce runtime costs and binary size."
+exclude = [".*"]
+description = "Macros converting character encodings at compile time"
 keywords = ["Shift_JIS", "windows-1251", "windows-1252", "ISO-8859"]
 categories = ["Encoding", "localization", "text-processing"]
 
