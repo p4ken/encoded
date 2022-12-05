@@ -6,7 +6,7 @@
 //!
 //! # Examples
 //!
-//! Fucntion-style macros convert a string literal into encoded bytes array.
+//! Convert a string literal into encoded bytes array:
 //!
 //! ```
 //! const BYTES: &[u8] = encoded::shift_jis!("漢字");
@@ -29,8 +29,8 @@
 //!
 //! ```compile_fail
 //! let kanji = "漢字";
-//! const BYTES: &[u8] = encoded::shift_jis!(kanji);
-//! //                                       ^^^^^
+//! let bytes = encoded::shift_jis!(kanji);
+//! //                              ^^^^^
 //! ```
 //!
 //! Any unmappable characters result a compile error:
