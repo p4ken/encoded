@@ -1,6 +1,6 @@
 # encoded
 
-Rust macros converting character encodings.
+Rust macros converting character encodings at compile time
 
 ## install
 
