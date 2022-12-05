@@ -28,9 +28,9 @@
 //! Argument must be a literal:
 //!
 //! ```compile_fail
-//! let kanji = "漢字";
-//! let bytes = encoded::shift_jis!(kanji);
-//! //                              ^^^^^
+//! const KANJI: &str = "漢字";
+//! const BYTES: &[u8] = encoded::shift_jis!(KANJI);
+//! //                                       ^^^^^
 //! ```
 //!
 //! Any unmappable characters result a compile error:
