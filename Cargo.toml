@@ -10,7 +10,7 @@ description = "Macros converting character encodings at compile time"
 documentation = "https://docs.rs/encoded"
 readme = "README.md"
 keywords = ["Shift_JIS", "windows-1251", "windows-1252", "ISO-8859"]
-categories = ["Encoding", "localization", "text-processing"]
+categories = ["encoding", "localization", "text-processing"]
 
 [lib]
 proc-macro = true
